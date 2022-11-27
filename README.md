@@ -4,9 +4,9 @@ For my project feature, I wanted to create something that would be achievable fo
 
 ## Planning
 
-For the feature, I want to firstly take a selection of images of my projects and display these within a gallery. This entails creating a container to house the images and specific classes to identify this group of images when it comes to writing the scripts to animate it three dimensionally. Usage of a `section` and `div` element would be good for this; the section to contain the images with a `div` also housing the images and representing the "spinner" element of the gallery. 
+For the feature, I want to firstly take a selection of images of my projects and display these within a gallery. This entails creating a container to house the images and specific classes to identify this group of images when it comes to writing the scripts to animate it three dimensionally. Usage of a `<section>` and `<div>` element would be good for this; the section to contain the images with a `<div>` also housing the images and representing the "spinner" element of the gallery. 
 
-The gallery needs two clickable `buttons` for navigating left and right, and below the gallery I want to house a description of the projects I have completed. For this I will use another button and call a function via an event listener which, after being clicked, will create and display the description inside a `div` container. This will provide my website with DOM event listeners as well as DOM updates in response to user interaction.
+The gallery needs two clickable `buttons` for navigating left and right, and below the gallery I want to house a description of the projects I have completed. For this I will use another button and call a function via an event listener which, after being clicked, will create and display the description inside a `<div>` container. This will provide my website with DOM event listeners as well as DOM updates in response to user interaction.
 
 I will need to include specific styles for the spinner which mean it stays in view whilst giving a good perspective of the images whilst being turned. Within the style sheet I will also specify the angles needed to be turned in the 3d gallery with each button click to complete a full 360' spin.
 
@@ -42,7 +42,7 @@ I specify individual sources for each image, housed in my main folder, and give 
 </div>
 ```
 
-Giving each `button` a float property with adirection allows them both to sit at the edges of their container, making them look more aesthetically pleasing and functional. Finally I create a `div` to hold the information I will create in my Javascript file;
+Giving each `button` a float property with adirection allows them both to sit at the edges of their container, making them look more aesthetically pleasing and functional. Finally I create a `<div>` to hold the information I will create in my Javascript file;
 
 ```html
 <div class="info-holder">
@@ -200,7 +200,7 @@ function spinContentRight(){
 }
 ```
 
-Lastly I declare the `spinnerInfo()` function, which creates a new `div` in the HTML document, assigned to a variable, and also use the DOM `.createTextNode()` method to create a description which I will append to the newly created `div`;
+Lastly I declare the `spinnerInfo()` function, which creates a new `<div>` in the HTML document, assigned to a variable, and also use the DOM `.createTextNode()` method to create a description which I will append to the newly created `<div>`;
 
 ```js
 function spinnerInfo(){
@@ -226,6 +226,8 @@ function spinnerInfo(){
 }
 ```
 
-In the closing part of the function, I create a variable called text, which is comprised of the previously created "info-holder" `div`. To this, I use the `.appendChild()` method to append the `newText` node to the `div`. Finally, I remove the `'click'` event listener from the `spinnerInfo()` function to prevent users from repeatedly displaying the text.
+In the closing part of the function, I create a variable called text, which is comprised of the previously created "info-holder" `<div>`. To this, I use the `.appendChild()` method to append the `newText` node to the `<div>`. Finally, I remove the `'click'` event listener from the `spinnerInfo()` function to prevent users from repeatedly displaying the text.
 
 ## Debugging
+
+
