@@ -28,7 +28,6 @@ function spinContentRight(){
 
 //Define function to show text after click on spinner button, and be clickable only once
 function spinnerInfo(){
-        let descriptionText = document.createElement('div')
         let newText = document.createTextNode("This is a 3d gallery displaying my completed projects for my Founders and Coders application. " + 
 
         "My first project was focused on building a page dedicated to my hobby of skateboarding. " +
