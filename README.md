@@ -231,4 +231,4 @@ In the closing part of the function, I create a variable called `text`, which is
 
 Key challenges were faced on this feature in using the `:nth child()` pseudo class and `transform: rotateY()` function, as I had not used these before. I made use of Stack Overflow to find out what other people had done for similar types of features with image transformation, and had quite a lot of trial and error to find the correct parameters for the `angle` parts of the feature.
 
-Additionally, quite a few challenges were faced in getting the `newText` variable to append correctly to `info-holder`'s `<div>`. Using console.log(text) I managed to debug this, and I decided to treat the `<div>` as a list, using appendChild(newText) to add the new text correctly. 
+Additionally, quite a few challenges were faced in getting the `newText` variable to append correctly to `info-holder`'s `<div>`. Using console.log(text) I managed to debug this, and I decided to treat the `<div>` as an object, using appendChild(newText) to add the new text correctly. 
