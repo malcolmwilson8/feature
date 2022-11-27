@@ -212,7 +212,7 @@ function spinnerInfo(){
 
         "My third project centered around building a fully functional comment box system. " +
 
-        "For my fourth project I built a user interface using HTML, and populated it with data from a JavaScript object containing data from some of Wes Anderson's             films. " +
+        "For my fourth project I built a user interface using HTML, and populated it with data from a JavaScript object containing info from some of Wes Anderson's             films. " +
  
         "For project five I built this website to support my application. " +
 
