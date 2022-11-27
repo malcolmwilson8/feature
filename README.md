@@ -4,7 +4,7 @@ For my project feature, I wanted to create something that would be achievable fo
 
 ## Planning
 
-For the feature, I want to firstly take a selection of images of my projects and display these within a gallery. This entails creating a container to house the images and specific classes to identify this group of images when it comes to writing the scripts to animate it three dimensionally. Usage of a `section` and `div` element would be good for this; the section to contain the images with a div also housing the images and representing the "spinner" element of the gallery. 
+For the feature, I want to firstly take a selection of images of my projects and display these within a gallery. This entails creating a container to house the images and specific classes to identify this group of images when it comes to writing the scripts to animate it three dimensionally. Usage of a `section` and `div` element would be good for this; the section to contain the images with a `div` also housing the images and representing the "spinner" element of the gallery. 
 
 The gallery needs two clickable `buttons` for navigating left and right, and below the gallery I want to house a description of the projects I have completed. For this I will use another button and call a function via an event listener which, after being clicked, will create and display the description inside a `div` container. This will provide my website with DOM event listeners as well as DOM updates in response to user interaction.
 
@@ -31,7 +31,7 @@ To start with, I will populate the html file with the container element (includi
 </section>
 ```
 
-I specify individual sources for each image, housed in my main folder, and give each image a `class="spinner-img"` and `height="550px" width "700px"` to standardise each for when I come to my style sheet and scripts. Next are the aforementioned buttons;
+I specify individual sources for each image, housed in my main folder, and give each image a `class="spinner-img"` to standardise them for when I come to my style sheet and scripts. Next are the aforementioned buttons;
 
 ```html
 <span id="button1" style="float: left;">&lt;</span>
@@ -66,12 +66,166 @@ And build a list of project links to fulfil the requirements of the website proj
 
 Moving onto CSS, I need to ensure that the spinner container displays the images it is housing correctly through correct perspective and also that it offsets direction at the correct x, y, and z locations;
 
+```css
 .spinner-container{
     perspective: 900px;
     transform-origin: 50% 50% -500px;
     transition: 1s
 }
+```
 
+I do the same to the `.spinner` class previously created, while this time applying a `preserve-3d` transform style, to ensure the children of the `.spinner` element exist in 3d space. I also define a set `height` for the element, apply `flex` to it and `justify-content: center`.
 
+```css
+.spinner{
+    transform-style: preserve-3d;
+    height: 500px;
+    transform-origin: 50% 50% -500px;
+    transition: 1s;
+    display: flex;
+    justify-content: center;
+}
+```
+
+Next, I define paramenters for the images themselves, while also giving them the same `transform-origin` parameters;
+
+```css
+.spinner-img{
+    height: 400px;
+    width: 450px;
+    margin: 5%;
+    position: absolute;
+    transform-origin: 50% 50% -500px;
+    outline: 2px solid;
+}
+```
+
+I then define the parameters for the remaining elements of the HTML;
+
+```css
+.li{
+    list-style: none;
+    text-align: center;
+    display: block;
+}
+
+.info-holder{
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+    font-size: 20px;
+    text-align: center;
+}
+
+.projects-links{
+    margin-top: 5%;
+}
+
+.spinner-holder{
+    display: flex;
+    justify-content: center;
+    padding: 2px 40px;
+}
+```
+
+Now, I make use of a pseudo class `:nth-child()` and pair elements from the .spinner img class with corresponding number entries which I will then transform based on their position in the list until a full spin has been completed;
+
+```css
+.spinner img:nth-child(1){transform: rotateY(-0deg)}
+.spinner img:nth-child(2){transform: rotateY(-60deg)}
+.spinner img:nth-child(3){transform: rotateY(-120deg)}
+.spinner img:nth-child(4){transform: rotateY(-180deg)}
+.spinner img:nth-child(5){transform: rotateY(-240deg)}
+.spinner img:nth-child(6){transform: rotateY(-300deg)}
+```
+
+Finally I apply styles to the span buttons;
+
+```css
+.spinner-container ~ span{
+    text-decoration: none;
+    color: black;
+    position: relative;
+    display: inline-block;
+    font-size: 3rem;
+    transition: 0.4s;
+    margin: 5px
+}
+
+.spinner-container ~ span:hover{
+    cursor: pointer;
+}
+```
+
+### Javascript
+
+First, I define variables for the origin angle which I will rotate from within the spin functions, as well as left/right buttons and a description button with DOM manipulation;
+
+```js
+let angle = 0;
+let button1 = document.getElementById('button1');
+let button2 = document.getElementById('button2');
+let infoButton = document.getElementById('spinner-info')
+```
+
+Following this, I introduce event listeners for each button, listening for `'click'` and then peforming either a `spinContentLeft()` or `spinContentRight()` function;
+
+```js
+button1.addEventListener('click', spinContentLeft);
+button2.addEventListener('click', spinContentRight);
+infoButton.addEventListener('click', spinnerInfo);
+```
+
+Starting with the `spinContentLeft()` function, I want this to first group the `.spinner` element and contain it within a variable, and I also want to declare an `angle` variable to determine how much to spin the gallery;
+
+```js
+function spinContentLeft(){
+    spinner = document.querySelector('.spinner');
+    angle = angle - 60;
+
+    spinner.setAttribute("style","transform: rotateY("+ angle +"deg);");
+}
+```
+
+Secondly, I call the `.setAttribute` element method to set the spinner element's style to `transform: rotate Y` by the declared angle variable (`- 60`, moving the gallery left by 60 degrees `+"deg)`. 
+
+I do the same for the right handed button, instead this time, move the angle `+ 60` to make the gallery move right;
+
+```js
+function spinContentRight(){
+    spinner = document.querySelector('.spinner');
+    angle = angle + 60;
+
+    spinner.setAttribute("style","transform: rotateY("+ angle +"deg);");
+}
+```
+
+Lastly I declare the `spinnerInfo()` function, which creates a new `div` in the HTML document, assigned to a variable, and also use the DOM `.createTextNode()` method to create a description which I will append to the newly created `div`;
+
+```js
+function spinnerInfo(){
+        let descriptionText = document.createElement('div')
+        let newText = document.createTextNode("This is a 3d gallery displaying my completed projects for my Founders and Coders application. " + 
+
+        "My first project was focused on building a page dedicated to my hobby of skateboarding. " +
+     
+        "My second project entailed building a gallery displaying the projects I`ve been working on. " +
+
+        "My third project centered around building a fully functional comment box system. " +
+
+        "For my fourth project I built a user interface using HTML, and populated it with data from a JavaScript object containing data from some of Wes Anderson's             films. " +
+ 
+        "For project five I built this website to support my application. " +
+
+        "My sixth and final project was to build a feature to host on my website; the 3d gallery you see above. " +
+        
+        "Links to the deployed project pages are below!");
+        let text = document.getElementsByClassName('info-holder')[0];
+        text.appendChild(newText);
+        infoButton.removeEventListener('click', spinnerInfo);
+}
+```
+
+In the closing part of the function, I create a variable called text, which is comprised of the previously created "info-holder" `div`. To this, I use the `.appendChild()` method to append the `newText` node to the `div`. Finally, I remove the `'click'` event listener from the `spinnerInfo()` function to prevent users from repeatedly displaying the text.
 
 ## Debugging
