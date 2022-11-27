@@ -15,6 +15,8 @@ As mentioned, I will need a function which displays a description of my projects
 
 ## Building
 
+### HTML
+
 To start with, I will populate the html file with the container element (including container and spinner) and my images;
 
 ```html
@@ -39,5 +41,37 @@ I specify individual sources for each image, housed in my main folder, and give 
 <button id="spinner-info">Click to Find out More</button>
 </div>
 ```
+
+Giving each `button` a float property with adirection allows them both to sit at the edges of their container, making them look more aesthetically pleasing and functional. Finally I create a `div` to hold the information I will create in my Javascript file;
+
+```html
+<div class="info-holder">
+</div>
+```
+
+And build a list of project links to fulfil the requirements of the website project;
+
+```html
+<div class="projects-links">
+    <li><a href="https://malcolmwilson8.github.io/my-webpage/">Project 1 - Hobby Page</a></li>
+    <li><a href="https://malcolmwilson8.github.io/project-gallery/">Project 2 - Project Gallery</a></li>
+    <li><a href="https://malcolmwilson8.github.io/comment-box/">Project 3 - Comment Box</a></li>
+    <li><a href="https://malcolmwilson8.github.io/movie-data/">Project 4 - Movie Data</a></li>
+    <li><a href="https://malcolmwilson8.github.io/my-webpage/">Project 5 - Website</a></li>
+    <li><a href="https://malcolmwilson8.github.io/feature//">Project 5 - 3d Gallery</a></li>
+</div>
+```
+
+### CSS
+
+Moving onto CSS, I need to ensure that the spinner container displays the images it is housing correctly through correct perspective and also that it offsets direction at the correct x, y, and z locations;
+
+.spinner-container{
+    perspective: 900px;
+    transform-origin: 50% 50% -500px;
+    transition: 1s
+}
+
+
 
 ## Debugging
