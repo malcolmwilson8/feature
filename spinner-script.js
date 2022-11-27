@@ -21,7 +21,7 @@ function spinContentLeft(){
 //Define function for right button with DOM
 function spinContentRight(){
     spinner = document.querySelector('.spinner');
-        angle = angle + 60;
+    angle = angle + 60;
 
     spinner.setAttribute("style","transform: rotateY("+ angle +"deg);");
 }
@@ -44,7 +44,6 @@ function spinnerInfo(){
         "My sixth and final project was to build a feature to host on my website; the 3d gallery you see above. " +
         
         "Links to the deployed project pages are below!");
-        descriptionText.appendChild(newText);
         let text = document.getElementsByClassName('info-holder')[0];
         text.appendChild(newText);
         infoButton.removeEventListener('click', spinnerInfo);
